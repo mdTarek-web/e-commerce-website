@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+    --color-lightText: #6D6D6D;
+    --color-destructive: #b91c1c;
+    --color-primary: #d3d3d3;
+
+    --shadow-testShadow: 0px 0px 54px -13px rgba(0,0,0,0.7);
+}
+
+/* @layer components {
+    .hoverEffect {
+        @apply duration-300 ease-in-out;
+    }
+} */
+@utility hoverEffect {
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
+}
