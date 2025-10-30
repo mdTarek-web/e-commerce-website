@@ -130,9 +130,54 @@ const removeUser = async (req, res) => {
         res.json({success: false, message: error.message});
     }
 };
-const updateUser = async (req, res) => {};
+const updateUser = async (req, res) => {
+       try {
+        const {_id, name, email, password } = req.body;
+        const user = await userModel.findById(_id);
+        if(!user){
+            return res.json({ success: false, message: "User not found"});
+        }
+        //name
+        if(name) user.name = name;
+        //email
+        if(email){
+            if(!validator.isEmail(email)){
+                return res.json({
+                    success: false,
+                    message: "Please enter a valid email address",
+                });
+            }
+            user.email = email;
+        }
+        //password
+        if(password){
+             if(password.length < 8){
+                return res.json({
+                  success: true,
+                  message: "Password length should be equal or grater than 8",
+                });
+            }
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(password, salt);
+        }
+        await user.save();
+        res.json({success: true, message: "user updated successfully!"});
+    } catch (error) {
+        console.log("Update User Error", error);
+        res.json({success: false, message: error.message});
+    }
+};
 const getUsers = async (req, res) => {
-    res.send("Hello from users");
+    try {
+        const total = await userModel.countDocuments({});
+        const users = await userModel.find({});
+
+
+        res.json({ success: true, total, users});
+    } catch (error) {
+        console.log("All users get Error", error);
+        res.json({success: false, message: error.message});
+    }
 };
 
 export { userLogin, userRegister, adminLogin, removeUser, updateUser, getUsers };

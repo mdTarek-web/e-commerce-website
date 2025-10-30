@@ -1,9 +1,17 @@
+import { useState } from "react"
+import Navbar from "./components/Navbar"
+import Sidebar from "./components/Sidebar"
 
 function App() {
-
+  const [token, setToken ] = useState(
+    localStorage.getItem("token") ? localStorage.getItem("token") : ""
+  );
   return (
     <main>
-      <h1 className="text-xl text-red-500">admin application</h1>
+      <Navbar token={token} setToken={setToken}/>
+      <div>
+        <Sidebar/>
+      </div>
     </main>
   )
 }
