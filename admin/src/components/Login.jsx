@@ -3,9 +3,9 @@ import { logo } from '../assets/images'
 import axios from 'axios';
 import Title from './Title'
 import toast from "react-hot-toast"
+import { serverUrl } from '../../config';
 
 const Login = ({setToken}) => {
-    const serverUrl = import.meta.env.VITE_BACKEND_URL
 
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
