@@ -85,7 +85,7 @@ const userRegister = async (req, res) => {
             //Password validation
             if(password.length < 8){
                 return res.json({
-                  success: true,
+                  success: false,
                   message: "Password length should be equal or grater than 8",
                 });
             }
@@ -151,8 +151,9 @@ const removeUser = async (req, res) => {
 };
 const updateUser = async (req, res) => {
        try {
-        const {_id, name, email, password } = req.body;
-        const user = await userModel.findById(_id);
+        const userId = req.params.id;
+        const {name, email, password } = req.body;
+        const user = await userModel.findById(userId);
         if(!user){
             return res.json({ success: false, message: "User not found"});
         }

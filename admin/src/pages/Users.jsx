@@ -104,7 +104,6 @@ const Users = ({token}) => {
         </div>) : (
           <div className='mt-2'>
             <p className="md-4">You have no user in your Database</p>
-            {/* <button className='bg-black/80 text-white py-2.5 px-4 rounded-md hover:bg-black duration-300 ease-in-out'>Add user</button> */}
           </div>
         )}
       </div>
