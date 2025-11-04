@@ -12,7 +12,7 @@ export const Label = ({ htmlFor, children, className }) => {
   );
 };
 
-const Input = ({ type, className, placeholder, id, name, onChange, value }) => {
+const Input = ({ type, className, placeholder, id, name, onChange, value, disabled }) => {
   return (
     <input
       id={id}
@@ -20,11 +20,12 @@ const Input = ({ type, className, placeholder, id, name, onChange, value }) => {
       placeholder={placeholder}
       name={name}
       onChange={onChange}
+      value={value}
+      disabled={disabled}
       className={cn(
-        "border px-4 py-1 border-gray-500 rounded-md max-w-lg",
+        "border px-4 py-1 border-gray-500 rounded-md max-w-lg text-gray-400",
         className
       )}
-      value={value}
     />
   );
 };
