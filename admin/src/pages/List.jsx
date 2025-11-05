@@ -5,8 +5,10 @@ import {serverUrl} from '../../config'
 import Title from "../components/Title";
 import Loader from "../components/Loader"
 import { Link } from "react-router-dom";
+import PriceFormat from '../components/PriceFormat';
+import { IoMdClose } from "react-icons/io";
 
-const List = () => {
+const List = ({token}) => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -17,9 +19,10 @@ const List = () => {
       const data = response?.data;
       if (data?.success) {
         setList(data?.products);
-      } else {
-        toast.error(data?.message);
       }
+      //  else {
+      //   toast.error(data?.message);
+      // }
     } catch (error) {
       console.log("Product list fetching Error",error);
       toast.error(error?.message);
@@ -30,6 +33,32 @@ const List = () => {
   useEffect(() => {
     fetchProductList();
   }, []);
+  
+  const handleRemoveProduct = async(item) => {
+    const confirmRemoval = window.confirm(
+      `Are you sure you to remove ${item?.name}?`
+    );
+    try {
+      setLoading(true);
+      const response = await axios.post(serverUrl + "/api/product/remove", {
+        _id: item?._id,
+      },
+    {headers: { token }}
+  );
+  const data = response?.data;
+  if (data?.success) {
+    toast.success(data?.message);
+    await fetchProductList();
+  } else {
+    toast.error(data?.message);
+  }
+    } catch (error) {
+      console.log("Product removal Error", error);
+      toast.error(error?.message);
+    }finally{
+      setLoading(false);
+    }
+  };
 
   return (
     <div>
@@ -54,6 +83,13 @@ const List = () => {
             {list?.map((item) => (
               <div key={item?._id} className='grid grid-cols-[1fr_2fr_1fr_1fr_1fr_1fr] items-center py-1 px-2 border border-gray-200 bg-gray-100 text-sm'>
                 <img src={item?.images[0]} alt="productImage" className='w-16 bg-white rounded-sm'/>
+                <p className='font-semibold line-clamp-1'>{item?.name}</p>
+                <p className='hidden md:inline-block font-medium'>{item?.category}</p>
+                <PriceFormat amount={item?.price}/>
+                <div className='flex justify-center'>
+                  <IoMdClose onClick={()=>handleRemoveProduct(item)} className='text-lg cursor-pointer hover:text-red-600 duration-300 ease-in-out'/>
+                </div>
+                <Link to={"/add"} className='hover:text-green-600 duration-300 ease-in-out text-center font-medium'>Edit</Link>
               </div>
             ))}
           </div>
