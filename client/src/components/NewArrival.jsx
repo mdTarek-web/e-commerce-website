@@ -16,13 +16,13 @@ const NewArrival = () => {
         try {
             setLoading(true);
             const fetchData = async () =>{
-                const response = await axios.get((serverUrl + '/api/product/list'));
+                const response = await axios.get(serverUrl + '/api/product/list');
                 const data = response?.data;
                 if (data?.success) {
                     setProducts(data?.products);
                     setTotal(data?.total);
                 } else {
-                    console.log("Product fetching Error", error);
+                    console.log("Product fetching Error",error);
                 }
             };
             fetchData()
@@ -70,7 +70,7 @@ const NewArrival = () => {
 
   return (
     <div className='w-full py-10'>
-        <Title>New Arrivals</Title>
+        <Title className="mb-5">New Arrivals</Title>
         {products?.length > 0 ? (
           <Slider {...settings}>
             {products?.map((item) => (

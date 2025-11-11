@@ -53,47 +53,56 @@ function Banner() {
       </div>
     ),
     responsive: [
-      {
-        breakpoint:576,
-        settings:{
-          dots: true,
-          appendDots: (dots) => {
-          <div style={{
-          position: "absolute",
-          bottom: 30,
-          left: "50%",
-          transform: "translateX(-50%)",
-        }}>
-          <ul style={{
-             margin: "0px",
-             display: "flex",
-             alignItems: "center",
-             gap: "10px",
-        }}>
-            {" "}
-            {dots}{" "}
+  {
+    breakpoint: 576,
+    settings: {
+      dots: true,
+      appendDots: (dots) => (
+        <div
+          style={{
+            position: "absolute",
+            bottom: 30,
+            left: "50%",
+            transform: "translateX(-50%)",
+          }}
+        >
+          <ul
+            style={{
+              margin: "0px",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            {dots}
           </ul>
-      </div>
-    customPaging:(i)=>(
-      <div style={i === dotActive ?{
-        width: "40px",
-        height: "10px",
-        backgroundColor: "#262626",
-        cursor: "pointer",
-        borderRadius: "20px",
-      } : {
-        width: "10px",
-        height: "10px", 
-        backgroundColor: "#ffffff",
-        cursor: "pointer",
-        borderRadius: "50%",
-      }}>
-      </div>
-         )}
-        }
-      }
-    ]
-  };
+        </div>
+      ),
+      customPaging: (i) => (
+        <div
+          style={
+            i === dotActive
+              ? {
+                  width: "40px",
+                  height: "10px",
+                  backgroundColor: "#262626",
+                  cursor: "pointer",
+                  borderRadius: "20px",
+                }
+              : {
+                  width: "10px",
+                  height: "10px",
+                  backgroundColor: "#ffffff",
+                  cursor: "pointer",
+                  borderRadius: "50%",
+                }
+          }
+        ></div>
+      ),
+    },
+  },
+]
+};
 
   return (
     <div className="w-full max-h-[600px]">

@@ -86,7 +86,7 @@ const listProduct = async (req, res) => {
 };
 const singleProduct = async (req, res) => {
     try {
-        const {_id} = req.body;
+        const {_id} = req.query;
         const product = await productModel.findById(_id);
         if(!product){
             return res.json({success:false, message:"No product matched with this id",});
