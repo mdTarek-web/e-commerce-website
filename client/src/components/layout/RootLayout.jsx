@@ -5,12 +5,14 @@ import Footer from '../Footer'
 import ServicesTag from '../ServicesTag'
 import { Toaster } from 'react-hot-toast'
 import { Provider } from "react-redux"
-import store from '../../redux/Store'
+import {store, persistor } from '../../redux/Store'
+import { PersistGate } from 'redux-persist/integration/react'
 
 
 const RootLayout = () => {
   return (
     <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
       <Header/>
       <ScrollRestoration/>
       <Outlet/>
@@ -22,6 +24,7 @@ const RootLayout = () => {
         color:"#ffffff",
       },
     }}/>
+      </PersistGate>
     </Provider>
   )
 }

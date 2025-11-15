@@ -11,10 +11,12 @@ import { Dialog, DialogPanel,} from '@headlessui/react'
 import Title from './Title';
 import { IoCloseOutline } from "react-icons/io5";
 import SocialLinks from './SocialLinks';
+import { useSelector } from 'react-redux';
 
 
 const Header = () => {
-   const [isOpen, setIsOpen] = useState(false)
+   const [isOpen, setIsOpen] = useState(false);
+    const { products } = useSelector((state) => state.orebi);
   return (
     <div className='border-b-[1px] border-slate-300 sticky top-0 z-50 bg-white'>
        <Container className="py-7 flex items-center gap-x-3 md:gap-x-7 justify-between">
@@ -37,7 +39,8 @@ const Header = () => {
           </Link>
           <span className='absolute -right-2 -top-1 w-3.5 h-3.5 rounded-full text-[9px] bg-lightText group-hover:bg-primary 
           text-white items-center justify-center hoverEffect'> 
-            0</span>
+            {products?.length > 0 ? products?.length : 0}
+            </span>
           <Link to={'/signin'} className='text-xl hover:text-primary hoverEffect'>
             <FaUserAlt />
           </Link>
