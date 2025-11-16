@@ -1,13 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Title from '../components/Title'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Container from "../components/Container"
 import {emptyCart} from "../assets/images"
 import {Link} from "react-router"
 import CartProduct from '../components/CartProduct';
+import { resetCart } from '../redux/orebiSlice';
+import PriceFormat from '../components/PriceFormat';
+import toast from 'react-hot-toast';
 
 const Cart = () => {
   const { products } = useSelector((state) => state.orebi);
+  const dispatch = useDispatch();
+  const [subTotal, setSubTotal] = useState("");
+  const [discount, setDiscount] = useState("");
+  const [total, setTotal] = useState("");
+
+  useEffect(() => {
+    let price = 0;
+    let discountedPrice = 0;
+    products?.map((item) => {
+      price +=item?.price * item?.quantity + ((item?.discountedPercentage * item?.price) / 100) * item?.quantity;
+      discountedPrice += item?.price * item?.quantity;
+      return price, discountedPrice;
+    });
+    setSubTotal(price);
+    setTotal(discountedPrice);
+  }, [products]);
+
+  const handleReset = () =>{
+    const confirmed = window.confirm("Are you to reset your cart?");
+    if(confirmed){
+      dispatch(resetCart());
+    }
+  }
+
+  const handleCheckout = () => {
+    toast.success(`Payment will be proceed shortly for $${total}`);
+  }
   return (
     <Container>
       <Title>My Cart</Title>
@@ -23,6 +53,33 @@ const Cart = () => {
           {products?.map((item) => (
               <CartProduct key={item?._id} item={item}/>
           ))}
+        </div>
+        <div className='flex items-start justify-between'>
+          <button onClick={handleReset} className='py-2 px-8 bg-red-500 text-white font-semibold uppercase mb-4 rounded-md hover:bg-red-700 hoverEffect'
+          >Reset cart</button>
+          <div className='max-w-xl gap-4 flex justify-end mt-4'>
+            <div className='w-96 flex flex-col gap-4'>
+              <h2 className='text-xl font-bold uppercase text-right'>Cart totals</h2>
+              <div>
+                <p className='flex items-center justify-between border-[1px] border-gray-400 py-1.5 px-4 text-lg font-medium '
+                >Subtotal{" "} <PriceFormat amount={subTotal} className="font-semibold tracking-wide"/>
+                </p>
+                <p className='flex items-center justify-between border-[1px] border-gray-400 py-1.5 px-4 text-lg font-medium border-b-0 border-t-0'
+                >Discount {" "}<PriceFormat amount={total-subTotal} className="font-semibold tracking-wide"/>
+                </p>
+                <p className='flex items-center justify-between border-[1px] border-gray-400 py-1.5 px-4 text-lg font-medium'
+                >Total{" "} <PriceFormat amount={total} className="font-bold text-xl tracking-wide"/>
+                </p>
+              </div>
+              <div>
+                <button
+                onClick={handleCheckout}
+                className='w-full rounded-md py-2.5 bg-black/80 text-white hover:bg-black hoverEffect'>
+                  Proceed to checkout
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>) : 
       (<div className='py-10'>
