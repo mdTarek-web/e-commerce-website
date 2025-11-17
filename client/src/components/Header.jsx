@@ -17,6 +17,7 @@ import { useSelector } from 'react-redux';
 const Header = () => {
    const [isOpen, setIsOpen] = useState(false);
     const { products } = useSelector((state) => state.orebi);
+    const token = localStorage.getItem("token");
   return (
     <div className='border-b-[1px] border-slate-300 sticky top-0 z-50 bg-white'>
        <Container className="py-7 flex items-center gap-x-3 md:gap-x-7 justify-between">
@@ -28,7 +29,7 @@ const Header = () => {
          text-lightText'>
           {
             headerNavigation?.map((item) => (
-              <NavLink key={item?.title} to={item?.link} className='hover:text-primary hoverEffect cursor-pointer relative group overflow-hidden'>
+              <NavLink key={item?.title} to={item?.link} className='hover:text-black hoverEffect cursor-pointer relative group overflow-hidden'>
                 {item?.title}
                 <span className='absolute bottom-0 left-0 inline-block w-full h-px bg-primary -translate-x-[110%] group-hover:translate-x-0 hoverEffect'>
                 </span></NavLink>
@@ -41,9 +42,9 @@ const Header = () => {
           text-white items-center justify-center hoverEffect'> 
             {products?.length > 0 ? products?.length : 0}
             </span>
-          <Link to={'/signin'} className='text-xl hover:text-primary hoverEffect'>
+          {token ? (<Link to={"/profile"} className='hover:text-black hoverEffect cursor-pointer relative group overflow-hidden'>Profile</Link>) : (<Link to={'/signin'} className='text-xl hover:text-primary hoverEffect'>
             <FaUserAlt />
-          </Link>
+          </Link>)}
         </div>
         <button onClick={()=>setIsOpen(true)} className='text-2xl text-lightText hover:text-primary md:hidden hoverEffect'>
           <HiOutlineMenu />
