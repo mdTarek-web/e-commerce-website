@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Title from "../components/Title";
 import { IoMdAdd, IoMdCloudUpload } from "react-icons/io";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import Input, { Label } from '../components/ui/Input';
+import Input, { Label } from '../components/ui/input';
 import toast from "react-hot-toast";
 import axios from "axios"
 import { serverUrl } from '../../config';
