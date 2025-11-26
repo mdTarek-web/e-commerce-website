@@ -12,6 +12,7 @@ import Title from './Title';
 import { IoCloseOutline } from "react-icons/io5";
 import SocialLinks from './SocialLinks';
 import { useSelector } from 'react-redux';
+import { SiPhpmyadmin } from "react-icons/si";
 
 
 const Header = () => {
@@ -35,6 +36,12 @@ const Header = () => {
                 </span></NavLink>
             ))
           }
+           <a
+           href="https://e-commerce-website-swwj.vercel.app/"
+           className="text-2xl hover:text-primary hoverEffect relative group"
+           rel="noopener noreferrer"
+         >
+       <SiPhpmyadmin />
           <Link to={'/cart'} className='text-2xl hover:text-primary hoverEffect relative group'>
             <IoMdCart />
           </Link>
