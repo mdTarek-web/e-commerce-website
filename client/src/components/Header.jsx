@@ -41,7 +41,8 @@ const Header = () => {
            className="text-2xl hover:text-primary hoverEffect relative group"
            rel="noopener noreferrer"
          >
-       <SiPhpmyadmin />
+        <SiPhpmyadmin />
+       </a>
           <Link to={'/cart'} className='text-2xl hover:text-primary hoverEffect relative group'>
             <IoMdCart />
           </Link>
