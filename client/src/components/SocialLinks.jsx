@@ -11,7 +11,7 @@ import {
 const linkData = [
     { icon: <FaGithub/>, href: "https://github.com/mdTarek-web"},
     { icon: <FaYoutube/>, href: ""},
-    { icon: <FaLinkedin/>, href: "https://www.linkedin.com/help/linkedin/?trk=p_settings_helpcenter_globalnav_android"},
+    { icon: <FaLinkedin/>, href: "https://www.linkedin.com/in/md-tarek-rahman-183b9532b?"},
     { icon: <FaFacebook/>, href: "https://www.facebook.com/share/16sjp34CcY/"},
     { icon: <FaEnvelope/>, href: ""},
 ]
