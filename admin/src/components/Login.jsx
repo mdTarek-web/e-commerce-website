@@ -53,8 +53,8 @@ const Login = ({setToken}) => {
                     />
                 </div>
                 <button type='submit' className='bg-black/80 text-white py-2 rounded-md hover:bg-black duration-300 transition-colors'>Login</button>
-                <p className='text-sm text-center font-medium'>Do you want to move the client site? <Link to="https://e-commerce-website-liy9.vercel.app/">
-                <span className='hover:text-blue-600 underline underline-offset-2 decoration-[1px] hoverEffect'>Client site</span>
+                <p className='text-sm text-center font-medium'>Do you want to move the home page? <Link to="https://e-commerce-website-liy9.vercel.app/">
+                <span className='font-semibold hover:text-blue-600 underline underline-offset-2 decoration-[1px] hoverEffect'>Home Page</span>
                </Link></p>
             </form>
         </div>
