@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 
 const linkData = [
-    { icon: <FaGithub/>, href: "github.com/mdTarek-web"},
+    { icon: <FaGithub/>, href: "https://github.com/mdTarek-web"},
     { icon: <FaYoutube/>, href: ""},
     { icon: <FaLinkedin/>, href: "https://www.linkedin.com/help/linkedin/?trk=p_settings_helpcenter_globalnav_android"},
     { icon: <FaFacebook/>, href: "https://www.facebook.com/share/16sjp34CcY/"},
