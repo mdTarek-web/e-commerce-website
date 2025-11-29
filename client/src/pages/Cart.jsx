@@ -54,7 +54,7 @@ const Cart = () => {
               <CartProduct key={item?._id} item={item}/>
           ))}
         </div>
-        <div className='flex items-start justify-between'>
+        <div className='flex items-start flex-wrap justify-between'>
           <button onClick={handleReset} className='py-2 px-8 bg-red-500 text-white font-semibold uppercase mb-4 rounded-md hover:bg-red-700 hoverEffect'
           >Reset cart</button>
           <div className='max-w-xl gap-4 flex justify-end mt-4'>
