@@ -36,13 +36,13 @@ const Header = () => {
                 </span></NavLink>
             ))
           }
-           <a
+          <a
            href="https://e-commerce-website-swwj.vercel.app/"
            className="text-2xl hover:text-primary hoverEffect relative group"
            rel="noopener noreferrer"
          >
-        <SiPhpmyadmin />
-       </a>
+       <SiPhpmyadmin />
+      </a>
           <Link to={'/cart'} className='text-2xl hover:text-primary hoverEffect relative group'>
             <IoMdCart />
           </Link>
@@ -50,7 +50,8 @@ const Header = () => {
           text-white items-center justify-center hoverEffect'> 
             {products?.length > 0 ? products?.length : 0}
             </span>
-          {token ? (<Link to={"/profile"} className='hover:text-black hoverEffect cursor-pointer relative group overflow-hidden'>Profile</Link>) : (<Link to={'/signin'} className='text-xl hover:text-primary hoverEffect'>
+          {token ? (<Link to={"/profile"} className='hover:text-black hoverEffect cursor-pointer relative group overflow-hidden'>Profile</Link>
+          ) : (<Link to={'/signin'} className='text-xl hover:text-primary hoverEffect'>
             <FaUserAlt />
           </Link>)}
         </div>
@@ -67,13 +68,38 @@ const Header = () => {
               className="w-[94%] space-y-4 bg-gray-700 p-6 border border-lightText rounded-md absolute top-10"
             >
               <div className='flex items-center justify-between gap-5'>
-                <Title className="text-xl text-white">Navigation Menu</Title>
-                <button onClick={()=> setIsOpen(false)} className='text-white/40 text-2xl hover:text-red-600 duration-300
+               <div className=''>
+                 <button onClick={()=> setIsOpen(false)} className='text-white/40 p-2 text-2xl hover:text-red-600 duration-300
                 border border-white/20 rounded-sm hover:border-white/40'>
                   <IoCloseOutline />
                 </button>
+               </div>
+                <div className='text-xl m- text-white/50 flex items-center gap-x-2'>
+                   <a 
+                      href="https://e-commerce-website-swwj.vercel.app/"
+                      className="border border-white/20 inline-flex p-1 rounded-full
+                        hover:text-white hover:border-white duration-300 cursor-pointer text-2xl hoverEffect relative group"
+                      rel="noopener noreferrer"
+                    >
+                  <SiPhpmyadmin />
+                  </a>
+                      <Link to={'/cart'} onClick={()=> setIsOpen(false)} className='border border-white/20 inline-flex p-1 rounded-full
+                        hover:text-white hover:border-white duration-300 cursor-pointer text-2xl hoverEffect relative group'>
+                        <IoMdCart />
+                      </Link>
+                      <span className='absolute -right-2 -top-1 w-3.5 h-3.5 rounded-full text-[9px] bg-lightText group-hover:bg-primary 
+                      text-white items-center justify-center hoverEffect'> 
+                        {products?.length > 0 ? products?.length : 0}
+                        </span>
+                      {token ? (<Link to={"/profile"} className='hover:text-black hoverEffect cursor-pointer relative group overflow-hidden'>Profile</Link>
+                      ) : (<Link to={'/signin'} onClick={()=> setIsOpen(false)} className='border border-white/20 inline-flex p-2 rounded-full
+                        hover:text-white hover:border-white duration-300 cursor-pointer text-xl hoverEffect'>
+                        <FaUserAlt />
+                      </Link>)}
+                </div>
               </div>
-              <div className='flex flex-col gap-5 pt-3'>
+              <div className='flex flex-col gap-5'>
+                <Title className="text-xl text-white">Navigation Menu</Title>
                 {headerNavigation?.map((item) => (
                 <NavLink onClick={()=> setIsOpen(false)} key={item?.title} to={item?.link} className="hover:text-white duration-300 relative group flex items-center gap-2">
                   <span className='w-2 h-2 rounded-full border border-white/80
